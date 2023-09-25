@@ -1,4 +1,5 @@
 import { useLoaderData, useParams } from "react-router-dom";
+import swal from "sweetalert";
 
 const ShowDonation = () => {
   const load = useLoaderData();
@@ -8,32 +9,83 @@ const ShowDonation = () => {
   const findDonation = load.find(
     (donation) => donation.id === parseInt(params.id)
     );
-    const  {id,picture,title,category,card_bg_color,text_color,button_bg_color} = findDonation
+     const {
+       id,
+       rectangle_picture,
+       title,
+       category,
+       price,
+       description,
+       card_bg_color,
+       text_color,
+       button_bg_color,
+    } = findDonation;
+    
+    const handleDonateBtn = () => { 
+       
+        const donateItem = JSON.parse(localStorage.getItem('donate'))
+
+         const donateData = [];
+        if (donateItem) {
+
+            
+            const isExist = donateItem.find((donationPrice) => donationPrice.id === id);
+            
+            if (isExist) {
+                swal("Opps !", "Youu have already donate ", "error", {
+                    button: "Aww Remember!",
+                });
+            }
+            else { 
+                donateData.push(...donateItem, findDonation);
+              localStorage.setItem('donate', JSON.stringify(donateData));
+                swal("Good job!", "You clicked the button!", "success", {
+                  button: "Aww yiss!",
+                });
+          
+            }
+
+        }
+        else { 
+
+             donateData.push(findDonation);
+            localStorage.setItem('donate', JSON.stringify(donateData));
+           
+
+             swal("Good job!", "You clicked the button!", "success", {
+               button: "Aww yiss!",
+             });
+        }
+
+
+
+    }
  
 
     return (
       <div>
-        <div
-          style={{ background: card_bg_color }}
-          className="card h-96 w-full shadow-xl"
-        >
-          <figure className="px-2 pt-2">
-            <img src={picture} alt="" />
-          </figure>
-          <div className="card-actions my-3 mx-4">
-            <button
-              style={{ background: button_bg_color, color: text_color }}
-              className="btn"
-            >
-              {category}
-            </button>
-          </div>
-          <div className="card-body">
-            <h2 style={{ color: text_color }} className="card-title">
-              {title}
-            </h2>
-            <p></p>
-          </div>
+        <div className="card">
+          <div>
+            <figure>
+              <img
+                className="w-full lg:h-[490px]"
+                src={rectangle_picture}
+                alt=""
+              />
+            </figure>
+
+            <p className="relative bg-gray-700 opacity-75 -mt-[70px] rounded-lg">
+              <button onClick={handleDonateBtn}
+                style={{ background: text_color, color: "white" }}
+                className="btn mx-3 my-3"
+              >
+                Donate: {price} $
+              </button>
+            </p>
+                </div>
+                
+                <p className="text-2xl font-semibold">{ category}</p>
+                <p >{ description}</p>
         </div>
       </div>
     );

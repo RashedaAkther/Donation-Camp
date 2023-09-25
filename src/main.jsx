@@ -17,12 +17,13 @@ const createRoots = createBrowserRouter(
       children:[{
         path:'/',
         element:<Home></Home>,
-        loader: ()=>fetch('donationData.json')
+        loader: ()=>fetch('/donationData.json')
       },
         {
           path:'/donation',
           element:<Donation></Donation>
         },
+      
         {
           path: '/show_donation/:id',
           element: <ShowDonation></ShowDonation>,
