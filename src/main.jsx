@@ -8,6 +8,7 @@ import Donation from './Components/Donation/Donation'
 import './index.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Home from './Components/Home/Home'
+import ShowDonation from './Components/ShowDonation/ShowDonation'
 const createRoots = createBrowserRouter(
   [
     {
@@ -21,6 +22,12 @@ const createRoots = createBrowserRouter(
         {
           path:'/donation',
           element:<Donation></Donation>
+        },
+        {
+          path: '/show_donation/:id',
+          element: <ShowDonation></ShowDonation>,
+          loader: ()=>fetch('/donationData.json')
+          
         }
     ]
     }
