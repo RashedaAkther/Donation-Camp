@@ -6,24 +6,7 @@ import Donations from "./donations";
 const Donation = () => {
     const [Cards, setcard] = useState([])
     const [IsShow, setIsShow] = useState(false)
-//     const [cardDonate, setCardDonate] = useState([])
-//     // setCardDonate(donationList);
-//     // console.log(cardDonate);
-    
-//     useEffect(() => {
-        
-//         const donationList = JSON.parse(localStorage.getItem("donate"));
-//         if (donationList) {
-//             setCardDonate(donationList)
-//             console.log(cardDonate);
-//          }
-          
-//     }, []
-        
-//   )
 
-    // const donationList = JSON.parse(localStorage.getItem("donate"));
-    // console.log(donationList);
     useEffect(() => {
         const cards = JSON.parse(localStorage.getItem('donate'))
         setcard[cards];
@@ -35,11 +18,6 @@ const Donation = () => {
       
     }, [])
     
-
-
-
-
-
 
 
     return (

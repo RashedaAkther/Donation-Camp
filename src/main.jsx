@@ -10,10 +10,12 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Home from './Components/Home/Home'
 import ShowDonation from './Components/ShowDonation/ShowDonation'
 import Statistics from './Components/Statistics/Statistics'
+import ErrorPage from './Components/ErrorPage/ErrorPage'
 const createRoots = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement:<ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",

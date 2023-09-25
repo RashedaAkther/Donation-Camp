@@ -51,8 +51,8 @@ const Statistics = () => {
 
   return (
     <div className="shadow-lg rounded-lg overflow-hidden">
-      <div className="py-3 px-5 bg-gray-50">Pie chart</div>
-      <canvas className="p-1 ml-40 mr-40" id="chartPie"></canvas>
+     
+      <canvas className="lg:p-1 lg:ml-40 lg:mr-40" id="chartPie"></canvas>
     </div>
   );
 };
