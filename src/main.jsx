@@ -9,31 +9,35 @@ import './index.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Home from './Components/Home/Home'
 import ShowDonation from './Components/ShowDonation/ShowDonation'
-const createRoots = createBrowserRouter(
-  [
-    {
-      path: '/',
-      element: <MainLayout></MainLayout>,
-      children:[{
-        path:'/',
-        element:<Home></Home>,
-        loader: ()=>fetch('/donationData.json')
+import Statistics from './Components/Statistics/Statistics'
+const createRoots = createBrowserRouter([
+  {
+    path: "/",
+    element: <MainLayout></MainLayout>,
+    children: [
+      {
+        path: "/",
+        element: <Home></Home>,
+        loader: () => fetch("/donationData.json"),
       },
-        {
-          path:'/donation',
-          element:<Donation></Donation>
-        },
-      
-        {
-          path: '/show_donation/:id',
-          element: <ShowDonation></ShowDonation>,
-          loader: ()=>fetch('/donationData.json')
-          
-        }
-    ]
-    }
-  ]
-)
+      {
+        path: "/donation",
+        element: <Donation></Donation>,
+      },
+
+      {
+        path: "/show_donation/:id",
+        element: <ShowDonation></ShowDonation>,
+        loader: () => fetch("/donationData.json"),
+      },
+      {
+        path: "/statistics",
+        element: <Statistics></Statistics>,
+        loader: () => fetch("/donationData.json")
+      },
+    ],
+  },
+]);
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(

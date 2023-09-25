@@ -28,29 +28,17 @@ const Donation = () => {
         const cards = JSON.parse(localStorage.getItem('donate'))
         setcard[cards];
         
-        console.log(cards);
+       
         if (cards) {
             setcard(cards)
         }
-        console.log(Cards);
+      
     }, [])
     
 
 
 
-//     const handleSeeAll = () => {
-//         const [donation, setDonation] = useState([]);
-//         const [donationLists, setDonationLists] = useState(false);
-//           const donationList = JSON.parse(localStorage.getItem("donate"));
-//           console.log(donationList);
-        
-//         if (donationList) {
-//             setDonation(donationList)
-//             console.log(donation);
-//       }
 
-        
-//   }
 
 
 
@@ -65,12 +53,7 @@ const Donation = () => {
                 <Donations key={card.id} findDonation={card}></Donations>
               ))}
 
-          {/* {donationList.map((findDonation) => (
-            <Donations
-              key={findDonation.id}
-              findDonation={findDonation}
-            ></Donations>
-          ))} */}
+          
         </div>
 
         <div id="isshow" className="grid justify-center items-center ">
