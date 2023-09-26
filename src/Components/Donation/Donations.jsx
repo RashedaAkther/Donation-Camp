@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Donations = ({ findDonation }) => {
   const {
     id,
@@ -32,12 +34,14 @@ const Donations = ({ findDonation }) => {
             {title}
           </h2>
 
-          <button
-            style={{ background: text_color, color: "white" }}
-            className="btn  "
-          >
-            See Details
-          </button>
+          <Link to={`/show_donation/${id}`}>
+            <button
+              style={{ background: text_color, color: "white" }}
+              className="btn  "
+            >
+              See Details
+            </button>
+          </Link>
         </div>
       </div>
     </div>
