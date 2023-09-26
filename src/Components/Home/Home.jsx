@@ -2,6 +2,7 @@ import { useLoaderData } from "react-router-dom";
 // import Banner from "../Banner/Banner";
 import Cards from "./cards";
 import { useState } from "react";
+import bannerImg from "../../assets/colorful-letters-forming-word-donate.jpg";
 
 const Home = () => {
   const [cardsDetails, setCardsDetails] = useState([]);
@@ -25,10 +26,7 @@ const Home = () => {
       <div>
         <div className="card w-full opacity-50  bg-white shadow-lg image-full ">
           <figure>
-            <img
-              src="./src/assets/colorful-letters-forming-word-donate.jpg"
-              alt="Shoes"
-            />
+            <img loading="lazy" src={bannerImg} alt="Shoe" />
           </figure>
           <div className="card-body flex">
             <p className="flex gap-5 mx-40 my-40">
