@@ -41,6 +41,7 @@ const Donations = ({ findDonation }) => {
             >
               See Details
             </button>
+            
           </Link>
         </div>
       </div>
