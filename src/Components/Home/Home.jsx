@@ -26,7 +26,7 @@ const Home = () => {
         <div className="card w-full opacity-50  bg-white shadow-lg image-full ">
           <figure>
             <img
-              src="/src/assets/colorful-letters-forming-word-donate.jpg"
+              src="./src/assets/colorful-letters-forming-word-donate.jpg"
               alt="Shoes"
             />
           </figure>
