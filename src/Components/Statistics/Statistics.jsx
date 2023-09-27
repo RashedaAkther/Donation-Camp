@@ -1,22 +1,37 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useMemo } from "react";
 import Chart from "chart.js/auto";
 import { useLoaderData } from "react-router-dom";
 
 const Statistics = () => {
-    const chartRef = useRef(null);
-    const jsonData = useLoaderData();
+  const chartRef = useRef(null);
+  const jsonData = useLoaderData() || [];
+
+  const percentage = useMemo(() => {
     const jsonDataLength = jsonData.length;
-
     const localData = JSON.parse(localStorage.getItem("donate"));
-    console.log(localData.length);
-    const localDataLength = localData.length;
+    console.log(localData);
 
-    const percentage = localDataLength / jsonDataLength;
-    const calcuPercent = (percentage * 100).toFixed(2);
-    console.log(calcuPercent);
-    const totalPercent = 100 - calcuPercent;
+    let localDataLength;
+    if (!localData) {
+      localDataLength = 0;
+    } else {
+      localDataLength = localData.length;
+    }
 
+    console.log({ localDataLength });
+    return localDataLength / jsonDataLength;
+  }, [jsonData]);
 
+  const calcuPercent = percentage * 100;
+
+  let totalPercent = 0;
+  if (calcuPercent === 100) {
+    totalPercent = 100;
+  } else {
+    totalPercent = 100 - calcuPercent;
+  }
+
+  const canvas = useRef(null);
 
   useEffect(() => {
     const dataPie = {
@@ -34,25 +49,24 @@ const Statistics = () => {
     const configPie = {
       type: "pie",
       data: dataPie,
-        options: {
-          
-            
-      },
+      options: {},
     };
 
-  
     if (chartRef.current) {
       chartRef.current.destroy();
     }
 
-    const ctx = document.getElementById("chartPie").getContext("2d");
+    const ctx = canvas.current.getContext("2d");
     chartRef.current = new Chart(ctx, configPie);
-  }, []);
+  }, [calcuPercent, totalPercent]);
 
   return (
-    <div className="shadow-lg rounded-lg overflow-hidden">
-     
-      <canvas className="lg:p-1 lg:ml-40 lg:mr-40" id="chartPie"></canvas>
+    <div className="shadow-lg h-screen grid justify-center items-center rounded-lg overflow-hidden">
+      <canvas
+        ref={canvas}
+        className="lg:p-1 lg:ml-40 lg:mr-40"
+        id="chartPie"
+      ></canvas>
     </div>
   );
 };
